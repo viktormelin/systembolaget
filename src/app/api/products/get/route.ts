@@ -8,21 +8,6 @@ export const GET = async (request: NextRequest, response: NextResponse) => {
 
   let products: Product[] = JSON.parse(readFileSync('data/products.json', 'utf8'));
 
-  // readFile('data/products.json', 'utf8', (err, data) => {
-  //   console.log(data.length);
-
-  //   if (!err && data) {
-  //     products = JSON.parse(data);
-  //     console.log(products.length);
-  //   } else if (err?.code == 'ENOENT') {
-  //     console.error('Products.json not found');
-  //     return new Response(null, { status: 500 });
-  //   } else {
-  //     console.error('Error with products.json', err?.code);
-  //     return new Response(null, { status: 500 });
-  //   }
-  // });
-
   if (products.length <= 0) {
     console.error('Products.json not found');
     return new Response(null, { status: 500 });

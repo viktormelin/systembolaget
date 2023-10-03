@@ -2,7 +2,7 @@ import { ApkProduct, Product } from '@/types/Product';
 import { readFileSync } from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 
-const calculateApk = async (products: Product[]) => {
+export const calculateApk = async (products: Product[]) => {
   let compiledProducts: ApkProduct[] = [];
   for (const product of products) {
     const volume = product.volume;
@@ -19,7 +19,11 @@ const calculateApk = async (products: Product[]) => {
   return compiledProducts;
 };
 
-const paginateProducts = (products: Product[], pageSize: number, pageNumber: number) => {
+export const paginateProducts = async (
+  products: ApkProduct[],
+  pageSize: number,
+  pageNumber: number
+): Promise<ApkProduct[]> => {
   return products.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
 };
 
