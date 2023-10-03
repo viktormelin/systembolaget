@@ -5,6 +5,10 @@ import { readFileSync } from 'fs';
 import { calculateApk, paginateProducts } from '../api/products/apk/route';
 import Pagination from '../components/Pagination';
 
+export const metadata = {
+  title: 'APK',
+};
+
 const Page = async (searchParams: { searchParams: { page: string } }) => {
   const page = searchParams.searchParams['page'] ?? 1;
   const size = 10;
