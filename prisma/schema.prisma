@@ -1,0 +1,80 @@
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id String @id @default(cuid()) 
+  productId String? @unique
+  productNumber String? @unique
+  productNameBold String?
+  productNameThin String?
+  category String?
+  productNumberShort String?
+  producerName String?
+  supplierName String?
+  isKosher Boolean?
+  bottleText String?
+  restrictedParcelQuantity Int?
+  isOrganic Boolean?
+  isSustainableChoice Boolean?
+  isClimateSmartPackaging Boolean?
+  isEthical Boolean?
+  ethicalLabel String?
+  isWebLaunch Boolean?
+  productLaunchDate String?
+  sellStartTime String?
+  isCompletelyOutOfStock Boolean?
+  isTemporaryOutOfStock Boolean?
+  alcoholPercentage Float?
+  volumeText String?
+  volume Int?
+  price Int?
+  country String?
+  originLevel1 String?
+  originLevel2 String?
+  categoryLevel1 String?
+  categoryLevel2 String?
+  categoryLevel3 String?
+  categoryLevel4 String?
+  customCategoryTitle String?
+  assortmentText String?
+  usage String?
+  taste String?
+  tasteSymbols String[]
+  tasteClockGroupBitter String?
+  tasteClockGroupSmokiness String?
+  tasteClockBitter Int?
+  tasteClockFruitacid Int?
+  tasteClockBody Int?
+  tasteClockRoughness Int?
+  tasteClockSweetness Int?
+  tasteClockSmokiness Int?
+  tasteClockCasque Int?
+  assortment String?
+  recycleFee Int?
+  isManufacturingCountry Boolean?
+  isRegionalRestricted Boolean?
+  packagingLevel1 String?
+  isNews Boolean?
+  images String[]
+  isDiscontinued Boolean?
+  isSupplierTemporaryNotAvailable Boolean?
+  sugarContent Int?
+  sugarContentGramPer100ml Int?
+  seal String[]
+  vintage String?
+  grapes String[]
+  otherSelections String?
+  color String?
+  dishPoints String?
+
+  @@map(name: "products")
+}
