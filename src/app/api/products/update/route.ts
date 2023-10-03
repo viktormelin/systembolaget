@@ -72,86 +72,76 @@ import { NextRequest, NextResponse } from 'next/server';
 // };
 
 export const GET = async (request: NextRequest, response: NextResponse) => {
-  const baseUrl = 'https://api-extern.systembolaget.se/sb-api-ecommerce/v1/productsearch/search?size=30';
-  let updatedProducts = [];
-  let products: Product[] = [];
+  return new Response(null, { status: 200 });
+  // const baseUrl = 'https://api-extern.systembolaget.se/sb-api-ecommerce/v1/productsearch/search?size=30';
+  // let updatedProducts = [];
+  // let products: Product[] = [];
 
-  const fetchOptions = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      'access-control-allow-origin': '*',
-      'ocp-apim-subscription-key': 'cfc702aed3094c86b92d6d4ff7a54c84',
-      Referer: 'https://www.systembolaget.se/',
-    },
-  };
+  // const fetchOptions = {
+  //   method: 'GET',
+  //   headers: {
+  //     accept: 'application/json',
+  //     'access-control-allow-origin': '*',
+  //     'ocp-apim-subscription-key': 'cfc702aed3094c86b92d6d4ff7a54c84',
+  //     Referer: 'https://www.systembolaget.se/',
+  //   },
+  // };
 
-  const urlParams = [
-    '&assortmentText=S%C3%A4song',
-    '&assortmentText=Tillf%C3%A4lligt%20sortiment',
-    '&assortmentText=Webblanseringar',
-    '&assortmentText=Fast%20sortiment',
-    '&assortmentText=Lokalt%20%26%20Sm%C3%A5skaligt',
-    '&assortmentText=Presentartiklar',
-    '&assortmentText=Ordervaror&price.max=250',
-    '&assortmentText=Ordervaror&price.min=251',
-  ];
+  // const urlParams = [
+  //   '&assortmentText=S%C3%A4song',
+  //   '&assortmentText=Tillf%C3%A4lligt%20sortiment',
+  //   '&assortmentText=Webblanseringar',
+  //   '&assortmentText=Fast%20sortiment',
+  //   '&assortmentText=Lokalt%20%26%20Sm%C3%A5skaligt',
+  //   '&assortmentText=Presentartiklar',
+  //   '&assortmentText=Ordervaror&price.max=250',
+  //   '&assortmentText=Ordervaror&price.min=251',
+  // ];
 
-  for (const param of urlParams) {
-    const url = baseUrl + param;
-    console.log(`Starting: ${url}`);
+  // for (const param of urlParams) {
+  //   const url = baseUrl + param;
+  //   console.log(`Starting: ${url}`);
 
-    for (let i = 1; i < 500; i++) {
-      await fetch(`${url}&page=${i}`, fetchOptions)
-        .then((res) => res.json())
-        .then((json) => {
-          if (i > json['metadata']['nextPage'] && json['metadata']['nextPage'] > 0) {
-            console.log('Aborted, something is wrong...');
-            console.log('Last page: ' + json['metadata']['nextPage']);
-          } else if (json['metadata']['nextPage'] == -1) {
-            products = products.concat(json['products']);
-            console.log('Done after ' + i + ' pages');
-            i = 10000;
-          } else {
-            products = products.concat(json['products']);
-          }
-        })
-        .catch((error) => console.error('Error', error));
-    }
-  }
-
-  const newProductNum = products.length;
-  let dupCount = 0;
-  let foundIds: string[] = [];
-
-  for (let i = products.length - 1; i >= 0; i--) {
-    let product = products[i];
-    if (foundIds.includes(product.productNumber as string)) {
-      products.splice(i, 1);
-      dupCount++;
-      continue;
-    } else {
-      foundIds.push(product.productNumber as string);
-    }
-  }
-
-  console.log(`Found: ${newProductNum} products`);
-  console.log(`Duplicates: ${dupCount} products`);
-
-  writeFile('data/products.json', JSON.stringify(products, null, 2), (err) => {
-    if (err) {
-      throw err;
-    }
-  });
-
-  // console.log('Starting to add products to database');
-
-  // for (const product of products) {
-  //   console.log(`Adding: ${product.productId}`);
-  //   await prisma.product.create({ data: mapApiProductToDbProduct(product) });
+  //   for (let i = 1; i < 500; i++) {
+  //     await fetch(`${url}&page=${i}`, fetchOptions)
+  //       .then((res) => res.json())
+  //       .then((json) => {
+  //         if (i > json['metadata']['nextPage'] && json['metadata']['nextPage'] > 0) {
+  //           console.log('Aborted, something is wrong...');
+  //           console.log('Last page: ' + json['metadata']['nextPage']);
+  //         } else if (json['metadata']['nextPage'] == -1) {
+  //           products = products.concat(json['products']);
+  //           console.log('Done after ' + i + ' pages');
+  //           i = 10000;
+  //         } else {
+  //           products = products.concat(json['products']);
+  //         }
+  //       })
+  //       .catch((error) => console.error('Error', error));
+  //   }
   // }
 
-  // console.log('Completed fetch of all products');
+  // const newProductNum = products.length;
+  // let dupCount = 0;
+  // let foundIds: string[] = [];
 
-  // let delCount = 0
+  // for (let i = products.length - 1; i >= 0; i--) {
+  //   let product = products[i];
+  //   if (foundIds.includes(product.productNumber as string)) {
+  //     products.splice(i, 1);
+  //     dupCount++;
+  //     continue;
+  //   } else {
+  //     foundIds.push(product.productNumber as string);
+  //   }
+  // }
+
+  // console.log(`Found: ${newProductNum} products`);
+  // console.log(`Duplicates: ${dupCount} products`);
+
+  // writeFile('data/products.json', JSON.stringify(products, null, 2), (err) => {
+  //   if (err) {
+  //     throw err;
+  //   }
+  // });
 };
