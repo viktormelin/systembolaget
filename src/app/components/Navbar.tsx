@@ -1,10 +1,15 @@
 'use client';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const hrefs = [
   {
+    label: 'Search',
+    href: '/',
+  },
+  {
     label: 'APK',
-    href: '/apk/',
+    href: '/apk?page=1',
   },
 ];
 
@@ -13,14 +18,14 @@ const Links = () => {
     <>
       {hrefs.map((link) => (
         <li key={link.href} role='none' className='flex items-stretch'>
-          <a
+          <Link
             role='menuitem'
             aria-haspopup='false'
-            className='flex items-center gap-2 py-4 transition-colors duration-300 hover:text-blue-500 focus:bg-blue-50 focus:outline-none focus-visible:outline-none lg:px-8'
+            className='uppercase flex items-center gap-2 py-4 transition-colors duration-300 hover:text-blue-500 focus:bg-blue-50 focus:outline-none focus-visible:outline-none lg:px-8'
             href={link.href}
           >
             <span>{link.label}</span>
-          </a>
+          </Link>
         </li>
       ))}
     </>
@@ -41,7 +46,7 @@ const Navbar = () => {
             role='navigation'
           >
             {/*      <!-- Brand logo --> */}
-            <a
+            <Link
               id='WindUI'
               aria-label='WindUI logo'
               aria-current='page'
@@ -49,7 +54,7 @@ const Navbar = () => {
               href='/'
             >
               dixxel.io
-            </a>
+            </Link>
             {/*      <!-- Mobile trigger --> */}
             <button
               className={`relative order-10 block h-10 w-10 self-center lg:hidden
