@@ -1,8 +1,9 @@
+import { Filters } from '@/types/Filter';
 import { ApkProduct, Product } from '@/types/Product';
 import { readFileSync } from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const calculateApk = async (products: Product[]) => {
+export const calculateApk = async (products: Product[], filter?: string) => {
   let compiledProducts: ApkProduct[] = [];
   for (const product of products) {
     const volume = product.volume;
@@ -16,6 +17,18 @@ export const calculateApk = async (products: Product[]) => {
   }
 
   compiledProducts.sort((a, b) => b.apk - a.apk);
+
+  if (filter) {
+    if (filter === 'allt') return compiledProducts;
+
+    const category = Filters.find((f) => f.name === filter)?.category;
+
+    return compiledProducts.filter((p) => {
+      if (category === 'categoryLevel1') return p.categoryLevel1 === filter;
+      if (category === 'categoryLevel2') return p.categoryLevel2 === filter;
+    });
+  }
+
   return compiledProducts;
 };
 
