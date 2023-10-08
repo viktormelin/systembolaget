@@ -4,49 +4,51 @@ import { imageUrl } from '@/lib/images';
 import { readFileSync } from 'fs';
 import { calculateApk, paginateProducts } from '../api/products/apk/route';
 import Pagination from '../components/Pagination';
+import { abril } from '../layout';
+import Filter from '../components/Filter';
 
 export const metadata = {
   title: 'APK',
 };
 
-const Page = async (searchParams: { searchParams: { page: string } }) => {
+const Page = async (searchParams: { searchParams: { page: string; filter: string } }) => {
   const page = searchParams.searchParams['page'] ?? 1;
+  const filter = searchParams.searchParams['filter'] ?? 'allt';
   const size = 10;
 
   const products: Product[] = JSON.parse(readFileSync('data/products.json', 'utf8'));
-  const apkProducts = await calculateApk(products);
+  const apkProducts = await calculateApk(products, filter);
   const paginatedProducts = await paginateProducts(apkProducts, Number(size), Number(page));
 
   return (
-    <div className='flex-1 h-full flex flex-col'>
-      <div className='flex-1 flex items-center justify-center gap-2'>
-        <ul className='divide-y divide-slate-100'>
-          {paginatedProducts.map((product) => (
-            <li
-              key={product.productId}
-              className='flex items-center gap-4 px-4 py-3 rounded-md cursor-pointer hover:bg-blue-200'
-            >
-              <div className='flex items-center self-center shrink-0'>
-                <Image
-                  className='object-contain'
-                  src={imageUrl(product.images)}
-                  alt={`Produktbild för ${product.productNameBold}`}
-                  width={40}
-                  height={75}
-                />
+    <div className='container px-6 m-auto'>
+      <Filter />
+      <div className='mt-16 grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12'>
+        {paginatedProducts.map((product) => (
+          <div
+            key={product.productId}
+            className='mb-12 h-72 col-span-4 lg:col-span-3 bg-[var(--brand-light)] rounded-xl px-4 pb-4 flex flex-col items-center justify-between cursor-pointer hover:shadow-lg'
+          >
+            <div className='flex justify-center h-[250px] w-full shrink-0 -mt-12'>
+              <Image
+                className='object-contain'
+                src={imageUrl(product.images)}
+                alt={`Produktbild för ${product.productNameBold}`}
+                width={125}
+                height={250}
+              />
+            </div>
+            <div className='flex flex-col items-center justify-center'>
+              <h2 className={abril.className}>
+                {product.productNameBold} {product.productNameThin}
+              </h2>
+              <div className='flex gap-5'>
+                <p className='text-xs'>{product.price}:-</p>
+                <p className='text-xs'>{Math.round((product.apk + Number.EPSILON) * 100) / 100} APK</p>
               </div>
-              <div className='flex flex-col gap-0 min-h-[2rem] items-start justify-center w-full min-w-0'>
-                <h4 className='text-base text-slate-700 '>
-                  <span className='font-semibold'>{product.productNameBold}</span> - {product.productNameThin}
-                </h4>
-                <p className='w-full text-sm truncate text-slate-500'>
-                  Pris: {product.price}kr | {Math.round((product.apk + Number.EPSILON) * 100) / 100}{' '}
-                  <span className='italic'>ml/krona</span>
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+            </div>
+          </div>
+        ))}
       </div>
       <Pagination page={Number(page)} />
     </div>

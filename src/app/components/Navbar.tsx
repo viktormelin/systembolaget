@@ -21,7 +21,7 @@ const Links = () => {
           <Link
             role='menuitem'
             aria-haspopup='false'
-            className='uppercase flex items-center gap-2 py-4 transition-colors duration-300 hover:text-blue-500 focus:bg-blue-50 focus:outline-none focus-visible:outline-none lg:px-8'
+            className='uppercase flex items-center gap-2 py-4 transition-colors duration-300 hover:text-[var(--brand-accent)] focus:bg-[var(--brand-light)] focus:outline-none focus-visible:outline-none lg:px-8'
             href={link.href}
           >
             <span>{link.label}</span>
@@ -38,17 +38,17 @@ const Navbar = () => {
   return (
     <>
       {/*<!-- Component: Basic Navbar --> */}
-      <header className='border-b-1 relative z-20 w-full border-b border-slate-200 bg-white/90 shadow-lg shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full after:bg-slate-200 lg:border-slate-200 lg:backdrop-blur-sm lg:after:hidden'>
+      <header className='border-b-1 relative z-20 w-full border-b border-[var(--brand-light)] bg-[var(--brand-dark)] shadow-lg shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full after:bg-[var(--brand-light)] lg:border-[var(--brand-light)] lg:backdrop-blur-sm lg:after:hidden'>
         <div className='relative mx-auto max-w-full px-6 lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem]'>
           <nav
             aria-label='main navigation'
-            className='flex h-[5.5rem] items-stretch justify-between font-medium text-slate-700'
+            className='flex h-[5.5rem] items-stretch justify-between font-medium text-slate-50'
             role='navigation'
           >
             {/*      <!-- Brand logo --> */}
             <Link
-              id='WindUI'
-              aria-label='WindUI logo'
+              id='Dixxel'
+              aria-label='Dixxel logo'
               aria-current='page'
               className='flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1'
               href='/'
@@ -87,7 +87,7 @@ const Navbar = () => {
             <ul
               role='menubar'
               aria-label='Select page'
-              className={`absolute top-0 left-0 z-[-1] h-[28.5rem] w-full justify-center overflow-hidden  overflow-y-auto overscroll-contain bg-white/90 px-8 pb-12 pt-24 font-medium transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0  lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible lg:bg-white/0 lg:px-0 lg:py-0  lg:pt-0 lg:opacity-100 ${
+              className={`absolute top-0 left-0 z-[-1] h-[28.5rem] w-full justify-center overflow-hidden  overflow-y-auto overscroll-contain bg-[var(--brand-light)] px-8 pb-12 pt-24 font-medium transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0  lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible lg:bg-white/0 lg:px-0 lg:py-0  lg:pt-0 lg:opacity-100 ${
                 isToggleOpen ? 'visible opacity-100 backdrop-blur-sm' : 'invisible opacity-0'
               }`}
             >

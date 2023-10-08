@@ -3,5 +3,15 @@
 @tailwind utilities;
 
 body {
-  @apply text-neutral-950 min-h-screen flex flex-col;
+  @apply text-slate-50 bg-[var(--brand-dark)] min-h-screen flex flex-col;
+}
+.imgGradient {
+  -webkit-mask-image: -webkit-gradient(linear, right top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+}
+
+:root {
+  --brand-accent: #d9bd6a;
+  --brand-light: #734864;
+  --brand-dark: #402737;
+  --brand-black: #10141e;
 }

@@ -8,12 +8,12 @@ const Pagination = ({ page }: { page: number }) => {
 
   return (
     <nav role='navigation' aria-label='Pagination Navigation'>
-      <ul className='flex items-center justify-center text-sm mb-6 list-none md:gap-1 text-slate-700'>
+      <ul className='flex items-center justify-center text-sm mb-6 list-none md:gap-1 '>
         <li>
           <Link
             href={pathname + '?page=' + (Number(page) - 1 > 1 ? String(Number(page) - 1) : '1')}
             aria-label='Goto Page 1'
-            className='inline-flex items-center justify-center h-10 gap-4 px-4 text-sm font-medium transition duration-300 rounded focus-visible:outline-none stroke-slate-700 text-slate-700 hover:bg-blue-50 hover:text-blue-500 hover:stroke-blue-500 focus:bg-blue-50 focus:text-blue-600 focus:stroke-blue-600'
+            className='inline-flex items-center justify-center h-10 gap-4 px-4 text-sm font-medium transition duration-300 rounded focus-visible:outline-none   hover:bg-[var(--brand-light)] hover:text-[var(--brand-accent)] hover:stroke-[var(--brand-accent)] focus:bg-[var(--brand-light)] focus:text-[var(--brand-accent)] focus:stroke-[var(--brand-accent)]'
           >
             <span className='order-2'>Föregående</span>
             <svg
@@ -37,7 +37,7 @@ const Pagination = ({ page }: { page: number }) => {
           <Link
             href={pathname + '?page=' + String(Number(page) + 1)}
             aria-label='Goto Page 3'
-            className='inline-flex items-center justify-center h-10 gap-4 px-4 text-sm font-medium transition duration-300 rounded focus-visible:outline-none stroke-slate-700 text-slate-700 hover:bg-blue-50 hover:text-blue-500 hover:stroke-blue-500 focus:bg-blue-50 focus:text-blue-600 focus:stroke-blue-600'
+            className='inline-flex items-center justify-center h-10 gap-4 px-4 text-sm font-medium transition duration-300 rounded focus-visible:outline-none   hover:bg-[var(--brand-light)] hover:text-[var(--brand-accent)] hover:stroke-[var(--brand-accent)] focus:bg-[var(--brand-light)] focus:text-[var(--brand-accent)] focus:stroke-[var(--brand-accent)]'
           >
             <span>Nästa</span>
             <svg
