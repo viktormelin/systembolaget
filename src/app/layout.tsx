@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body className={poppins.className}>
         <Navbar />
-        <main className='flex-1 flex flex-col relative mx-auto max-w-full px-6 lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem]'>
+        <main className='flex-1 flex flex-col bg-[var(--brand-dark)] relative mx-auto max-w-full px-6 lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem]'>
           {children}
         </main>
       </body>
