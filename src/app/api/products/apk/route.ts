@@ -36,10 +36,10 @@ export const calculateApk = async (products: Product[], filter?: string) => {
 };
 
 export const paginateProducts = async (
-  products: ApkProduct[],
+  products: ApkProduct[] | Product[],
   pageSize: number,
   pageNumber: number
-): Promise<ApkProduct[]> => {
+): Promise<ApkProduct[] | Product[]> => {
   return products.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
 };
 

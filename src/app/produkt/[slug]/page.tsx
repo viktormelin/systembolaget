@@ -48,7 +48,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   </Link>
                   ,{' '}
                   <Link
-                    href={'/resultat' + '?land=' + product.country}
+                    href={'/resultat' + '?region=' + product.originLevel1}
                     className='w-fit hover:underline cursor-pointer'
                   >
                     {product.originLevel1}
@@ -59,14 +59,14 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 <h2 className='font-bold'>Vintyp</h2>
                 <p>
                   <Link
-                    href={'/resultat' + '?typ=' + product.categoryLevel1}
+                    href={'/resultat' + '?typ1=' + product.categoryLevel1}
                     className='w-fit hover:underline cursor-pointer'
                   >
                     {product.categoryLevel1}
                   </Link>
                   ,{' '}
                   <Link
-                    href={'/resultat' + '?typ=' + product.categoryLevel2}
+                    href={'/resultat' + '?typ2=' + product.categoryLevel2}
                     className='w-fit hover:underline cursor-pointer'
                   >
                     {product.categoryLevel2}

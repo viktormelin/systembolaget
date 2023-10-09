@@ -2,7 +2,7 @@ import { Product } from '@/types/Product';
 import Image from 'next/image';
 import { imageUrl } from '@/lib/images';
 import { readFileSync } from 'fs';
-import { calculateApk, paginateProducts } from '../api/products/apk/route';
+import { calculateApk, getApk, paginateProducts } from '../api/products/apk/route';
 import Pagination from '../components/Pagination';
 import { abril } from '../layout';
 import Filter from '../components/Filter';
@@ -46,7 +46,7 @@ const Page = async (searchParams: { searchParams: { sida: string; filter: string
               </h2>
               <div className='flex gap-5'>
                 <p className='text-xs'>{product.price}:-</p>
-                <p className='text-xs'>{Math.round((product.apk + Number.EPSILON) * 100) / 100} APK</p>
+                <p className='text-xs'>{Math.round((getApk(product) + Number.EPSILON) * 100) / 100} APK</p>
               </div>
             </div>
           </Link>

@@ -4,13 +4,14 @@ import Image from 'next/image';
 import ReactCountryFlag from 'react-country-flag';
 import { abril } from '../layout';
 import Link from 'next/link';
+import Pagination from './Pagination';
 
 interface Props {
   products: Product[];
-  countries: any;
+  page: string;
 }
 
-const SearchResult = ({ products, countries }: Props) => {
+const SearchResult = ({ products, page }: Props) => {
   return (
     <section>
       <div className='container px-6 m-auto'>
@@ -39,6 +40,7 @@ const SearchResult = ({ products, countries }: Props) => {
             </Link>
           ))}
         </div>
+        <Pagination sida={Number(page)} />
       </div>
     </section>
   );
