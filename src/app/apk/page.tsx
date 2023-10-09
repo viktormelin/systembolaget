@@ -6,6 +6,7 @@ import { calculateApk, paginateProducts } from '../api/products/apk/route';
 import Pagination from '../components/Pagination';
 import { abril } from '../layout';
 import Filter from '../components/Filter';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'APK',
@@ -25,7 +26,8 @@ const Page = async (searchParams: { searchParams: { sida: string; filter: string
       <Filter />
       <div className='mt-16 grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12'>
         {paginatedProducts.map((product) => (
-          <div
+          <Link
+            href={`/produkt/${product.productNumber}-${product.productNameBold}`}
             key={product.productId}
             className='mb-12 h-72 col-span-4 lg:col-span-3 bg-[var(--brand-light)] rounded-xl px-4 pb-4 flex flex-col items-center justify-between cursor-pointer hover:shadow-lg'
           >
@@ -47,7 +49,7 @@ const Page = async (searchParams: { searchParams: { sida: string; filter: string
                 <p className='text-xs'>{Math.round((product.apk + Number.EPSILON) * 100) / 100} APK</p>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <Pagination sida={Number(page)} />
