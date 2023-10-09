@@ -64,13 +64,11 @@ const fetchLatestDataCommit = async () => {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const latestDataCommit = new Date(await fetchLatestDataCommit());
 
-  console.log(latestDataCommit);
-
   return (
     <html lang='en'>
       <body className={poppins.className}>
         <Navbar />
-        <main className='flex-1 flex flex-col bg-[var(--brand-dark)] relative mx-auto max-w-full px-6 lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem]'>
+        <main className='flex-1 flex bg-[var(--brand-dark)] relative mx-auto max-w-full px-6 lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem]'>
           {children}
         </main>
         <footer className='fixed bottom-0 w-full flex justify-center items-center gap-10 p-2'>
