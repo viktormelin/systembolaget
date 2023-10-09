@@ -1,17 +1,34 @@
 'use client';
 
+import { paramsToObject } from '@/lib/utils';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 const Pagination = ({ sida }: { sida: number }) => {
   const pathname = usePathname();
+  const params = useSearchParams();
+  const entries = params.entries();
+  const compiledParams = paramsToObject(entries);
+
+  const generatePath = (target: string) => {
+    const currentUrl = pathname;
+    const newParams = new URLSearchParams();
+    for (const [key, value] of Object.entries(compiledParams)) {
+      if (key !== 'sida') {
+        newParams.append(key, String(value));
+      }
+    }
+
+    newParams.append('sida', target);
+    return currentUrl + '?' + newParams;
+  };
 
   return (
     <nav role='navigation' aria-label='Pagination Navigation'>
       <ul className='flex items-center justify-center text-sm mb-6 list-none md:gap-1 '>
         <li>
           <Link
-            href={pathname + '?sida=' + (Number(sida) - 1 > 1 ? String(Number(sida) - 1) : '1')}
+            href={generatePath(Number(sida) - 1 > 1 ? String(Number(sida) - 1) : '1')}
             aria-label='Goto sida 1'
             className='inline-flex items-center justify-center h-10 gap-4 px-4 text-sm font-medium transition duration-300 rounded focus-visible:outline-none   hover:bg-[var(--brand-light)] hover:text-[var(--brand-accent)] hover:stroke-[var(--brand-accent)] focus:bg-[var(--brand-light)] focus:text-[var(--brand-accent)] focus:stroke-[var(--brand-accent)]'
           >
@@ -35,7 +52,7 @@ const Pagination = ({ sida }: { sida: number }) => {
 
         <li>
           <Link
-            href={pathname + '?sida=' + String(Number(sida) + 1)}
+            href={generatePath(String(Number(sida) + 1))}
             aria-label='Goto sida 3'
             className='inline-flex items-center justify-center h-10 gap-4 px-4 text-sm font-medium transition duration-300 rounded focus-visible:outline-none   hover:bg-[var(--brand-light)] hover:text-[var(--brand-accent)] hover:stroke-[var(--brand-accent)] focus:bg-[var(--brand-light)] focus:text-[var(--brand-accent)] focus:stroke-[var(--brand-accent)]'
           >
