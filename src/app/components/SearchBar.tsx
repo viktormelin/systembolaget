@@ -18,7 +18,7 @@ const SearchBar = () => {
   useEffect(() => {
     const searchFunc = async () => {
       if (debouncedSearchTerm) {
-        router.push(pathname + '?query=' + debouncedSearchTerm);
+        router.push('/results' + '?search=' + debouncedSearchTerm);
       }
     };
 
@@ -27,8 +27,8 @@ const SearchBar = () => {
   }, [debouncedSearchTerm]);
 
   return (
-    <div className='w-full h-96 flex items-center justify-center gap-6'>
-      <div className='relative my-6 w-96'>
+    <div className='flex items-center justify-center'>
+      <div className='relative w-96'>
         <input
           id='input'
           type='text'
@@ -45,9 +45,6 @@ const SearchBar = () => {
           Sök på dryck
         </label>
         <SearchIcon className='absolute w-6 h-6 top-3 left-4 stroke-[var(--brand-accent)] peer-disabled:cursor-not-allowed' />
-        <small className='absolute flex justify-between w-full px-4 py-1 text-xs transition text-slate-400 peer-invalid:text-pink-500'>
-          <span>Sök på namn, produkt eller id</span>
-        </small>
       </div>
     </div>
   );

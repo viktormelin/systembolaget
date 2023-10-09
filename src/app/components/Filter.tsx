@@ -21,7 +21,7 @@ const Filter = () => {
   };
 
   return (
-    <ul className='w-full flex items-center justify-center gap-3 p-4'>
+    <ul className='w-full flex items-center justify-center lg:gap-3 flex-wrap p-4'>
       {Filters.map((item) => (
         <li
           onClick={() => handleClick(item)}

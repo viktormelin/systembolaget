@@ -14,7 +14,7 @@ const SearchResult = ({ products, countries }: Props) => {
   return (
     <section>
       <div className='container px-6 m-auto'>
-        <div className='grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12'>
+        <div className='mt-16 grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12'>
           {products.map((product) => (
             <Link
               href={`/product/${product.productNumber}-${product.productNameBold}`}

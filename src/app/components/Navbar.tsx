@@ -1,12 +1,9 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
+import SearchBar from './SearchBar';
 
 const hrefs = [
-  {
-    label: 'Search',
-    href: '/',
-  },
   {
     label: 'APK',
     href: '/apk?page=1',
@@ -50,7 +47,7 @@ const Navbar = () => {
               id='Dixxel'
               aria-label='Dixxel logo'
               aria-current='page'
-              className='flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1'
+              className='flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none'
               href='/'
             >
               dixxel.io
@@ -91,6 +88,7 @@ const Navbar = () => {
                 isToggleOpen ? 'visible opacity-100 backdrop-blur-sm' : 'invisible opacity-0'
               }`}
             >
+              <SearchBar />
               <Links />
             </ul>
           </nav>
