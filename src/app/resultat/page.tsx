@@ -3,8 +3,8 @@ import { promises } from 'fs';
 import SearchResult from '../components/SearchResult';
 import { removeSpecialCharacters } from '@/lib/chars';
 
-const Page = async (searchParams: { searchParams: { search: string } }) => {
-  const query = removeSpecialCharacters(searchParams.searchParams['search'].toLowerCase()) ?? '';
+const Page = async (searchParams: { searchParams: { ord: string } }) => {
+  const query = removeSpecialCharacters(searchParams.searchParams['ord'].toLowerCase()) ?? '';
   const file = await promises.readFile('data/products.json', 'utf8');
   const file2 = await promises.readFile('data/countries.json', 'utf8');
   const products: Product[] = JSON.parse(file);
