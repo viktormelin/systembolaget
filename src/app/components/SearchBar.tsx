@@ -18,7 +18,7 @@ const SearchBar = () => {
   useEffect(() => {
     const searchFunc = async () => {
       if (debouncedSearchTerm) {
-        router.push('/results' + '?search=' + debouncedSearchTerm);
+        router.push('/resultat' + '?ord=' + debouncedSearchTerm);
       }
     };
 

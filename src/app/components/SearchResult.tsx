@@ -17,7 +17,7 @@ const SearchResult = ({ products, countries }: Props) => {
         <div className='mt-16 grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12'>
           {products.map((product) => (
             <Link
-              href={`/product/${product.productNumber}-${product.productNameBold}`}
+              href={`/produkt/${product.productNumber}-${product.productNameBold}`}
               key={product.productId}
               className='mb-12 h-72 col-span-4 lg:col-span-3 bg-[var(--brand-light)] rounded-xl px-4 pb-4 flex flex-col items-center justify-between cursor-pointer hover:shadow-lg'
             >

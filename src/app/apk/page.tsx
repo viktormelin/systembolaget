@@ -11,8 +11,8 @@ export const metadata = {
   title: 'APK',
 };
 
-const Page = async (searchParams: { searchParams: { page: string; filter: string } }) => {
-  const page = searchParams.searchParams['page'] ?? 1;
+const Page = async (searchParams: { searchParams: { sida: string; filter: string } }) => {
+  const page = searchParams.searchParams['sida'] ?? 1;
   const filter = searchParams.searchParams['filter'] ?? 'allt';
   const size = 10;
 
@@ -50,7 +50,7 @@ const Page = async (searchParams: { searchParams: { page: string; filter: string
           </div>
         ))}
       </div>
-      <Pagination page={Number(page)} />
+      <Pagination sida={Number(page)} />
     </div>
   );
 };
