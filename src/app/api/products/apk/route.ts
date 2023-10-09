@@ -3,15 +3,18 @@ import { ApkProduct, Product } from '@/types/Product';
 import { readFileSync } from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const getApk = (product: Product) => {
+  const volume = product.volume;
+  const price = product.price;
+  const alc = product.alcoholPercentage / 100;
+  const alcVolume = volume * alc;
+  return alcVolume / price;
+};
+
 export const calculateApk = async (products: Product[], filter?: string) => {
   let compiledProducts: ApkProduct[] = [];
   for (const product of products) {
-    const volume = product.volume;
-    const price = product.price;
-    const alc = product.alcoholPercentage / 100;
-    const alcVolume = volume * alc;
-    const apk = alcVolume / price;
-
+    const apk = getApk(product);
     const updatedProduct = { ...product, apk };
     compiledProducts.push(updatedProduct);
   }
